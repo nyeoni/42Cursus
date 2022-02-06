@@ -6,7 +6,7 @@
 #    By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 20:36:43 by nkim              #+#    #+#              #
-#    Updated: 2022/02/06 14:36:57 by nkim             ###   ########.fr        #
+#    Updated: 2022/02/06 17:04:36 by nkim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME					= pipex
 CC						= gcc
 CFLAGS					= -Wall -Werror -Wextra
 AR						= ar rcs
-RM						= rm -f
+RM						= rm -rf
 
 LIBFT_DIR				= ./libft/
 LIBFT_FLAGS				= -L ./$(LIBFT_DIR) -lft
@@ -23,14 +23,22 @@ LIBFT_FILE				= $(LIBFT_DIR)libft.a
 
 INCS_DIR				= ./include/
 SRCS_DIR				= ./src/
+
+INCS_DIR_BONUS			= ./include_bonus/
+SRCS_DIR_BONUS			= ./src_bonus/
+
 INCS					= -I include
 
 SRC						= main.c utils.c
 SRCS					= $(addprefix $(SRCS_DIR), $(SRC))
 OBJS					= $(SRCS:.c=.o)
 
+SRC_BONUS				= main_bonus.c utils_bonus.c
+SRCS_BONUS				= $(addprefix $(SRCS_DIR_BONUS), $(SRC_BONUS))
+OBJS_BONUS				= $(SRCS_BONUS:.c=.o)
+
 .c.o :
-	$(CC) -I $(INCS_DIR) -o $@ -c $?
+	$(CC) $(CFLAGS) -I $(INCS_DIR) -I $(INCS_DIR_BONUS) -o $@ -c $?
 
 $(NAME) : $(OBJS)
 	@echo "\033[33m----Compiling lib----"
@@ -42,7 +50,7 @@ all : $(NAME)
 
 clean :
 	make -C $(LIBFT_DIR) clean
-	$(RM) $(OBJS) a.out.dSYM
+	$(RM) $(OBJS) $(OBJS_BONUS) a.out.dSYM
 
 fclean : clean
 	@echo "\n\033[31m----Delete everything 👌!----"
@@ -51,6 +59,12 @@ fclean : clean
 	@echo "\n\033[31m----fclean done 👌!----\n"
 
 re : fclean all
+
+bonus : $(OBJS_BONUS)
+	@echo "\033[33m----Compiling lib----"
+	make -C $(LIBFT_DIR)
+	$(CC) -o $(NAME) $(OBJS_BONUS) $(LIBFT_FLAGS) -I $(INCS_DIR_BONUS)
+	@echo "\n----Pipex bonus Compiled! 😻----"
 
 test :
 	make -C $(LIBFT_DIR)

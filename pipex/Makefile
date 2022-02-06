@@ -6,7 +6,7 @@
 #    By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 20:36:43 by nkim              #+#    #+#              #
-#    Updated: 2022/02/06 17:04:36 by nkim             ###   ########.fr        #
+#    Updated: 2022/02/06 20:03:59 by nkim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,10 @@ test :
 leak :
 	make -C $(LIBFT_DIR)
 	$(CC) -g3 -fsanitize=address -o $(NAME) $(SRCS) $(LIBFT_FLAGS) -I $(INCS_DIR)
+
+bonus_leak :
+	make -C $(LIBFT_DIR)
+	$(CC) -g3 -fsanitize=address -o $(NAME) $(SRCS_BONUS) $(LIBFT_FLAGS) -I $(INCS_DIR_BONUS)
 
 norm :
 	norminette $(SRCS) $(INCS_DIR)

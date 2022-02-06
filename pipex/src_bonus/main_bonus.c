@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 02:35:25 by nkim              #+#    #+#             */
-/*   Updated: 2022/02/07 01:58:56 by nkim             ###   ########.fr       */
+/*   Updated: 2022/02/07 02:03:11 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	pipe_cmd(char *cmd, char **envp)
 {
-	int pipe_fd[2];
-	int status;
-	pid_t pid;
+	int		pipe_fd[2];
+	int		status;
+	pid_t	pid;
 
 	if (pipe(pipe_fd) == -1)
 		throw_error("pipe error", 1);
@@ -54,8 +54,8 @@ void	last_process(char *outfile, char *cmd2, char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {
-	int infile;
-	int i;
+	int	infile;
+	int	i;
 
 	if (argc < 5)
 		throw_error("wrong arguments", 1);
@@ -69,7 +69,6 @@ int	main(int argc, char **argv, char **envp)
 		i = -1;
 		while (++i < argc - 4)
 			pipe_cmd(argv[2 + i], envp);
-		// cmd_process(argv, argc - 3, envp);
 		last_process(argv[argc - 1], argv[argc - 2], envp);
 	}
 	return (0);

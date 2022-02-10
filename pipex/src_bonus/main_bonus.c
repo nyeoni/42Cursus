@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 02:35:25 by nkim              #+#    #+#             */
-/*   Updated: 2022/02/07 02:03:11 by nkim             ###   ########.fr       */
+/*   Updated: 2022/02/10 19:04:58 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	last_process(char *outfile, char *cmd2, char **envp)
 {
 	int	fd;
 
-	printf("cmd2: %s\n", cmd2);
 	fd = open(outfile, O_WRONLY | O_TRUNC | O_CREAT, 0777);
 	if (fd == -1)
 		perror("file open error");

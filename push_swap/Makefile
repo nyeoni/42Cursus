@@ -6,7 +6,7 @@
 #    By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/17 17:20:19 by nkim              #+#    #+#              #
-#    Updated: 2022/02/23 23:42:30 by nkim             ###   ########.fr        #
+#    Updated: 2022/02/24 01:48:24 by nkim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,16 @@ SORT_DIR_SRC			= sort/
 SORT_SRC				= sort_a_to_b.c
 STACK_DIR_SRC			= stack/
 STACK_SRC				= stack.c
+OPERATOR_DIR_SRC		= operator/
+OPERATOR_SRC			= swap.c push.c rotate.c reverse_rotate.c
+UTILS_DIR_SRC			= utils/
+UTILS_SRC				= error.c
 
 SRC						= main.c \
 						$(addprefix $(SORT_DIR_SRC), $(SORT_SRC)) \
-						$(addprefix $(STACK_DIR_SRC), $(STACK_SRC))
+						$(addprefix $(STACK_DIR_SRC), $(STACK_SRC)) \
+						$(addprefix $(OPERATOR_DIR_SRC), $(OPERATOR_SRC)) \
+						$(addprefix $(UTILS_DIR_SRC), $(UTILS_SRC))
 SRCS					= $(addprefix $(SRCS_DIR), $(SRC))
 OBJS					= $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 #    By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/17 17:20:19 by nkim              #+#    #+#              #
-#    Updated: 2022/02/17 17:24:04 by nkim             ###   ########.fr        #
+#    Updated: 2022/02/23 23:42:30 by nkim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,14 @@ INCS_DIR				= ./include/
 SRCS_DIR				= ./src/
 INCS					= -I include
 
-SRC						= main.c
+SORT_DIR_SRC			= sort/
+SORT_SRC				= sort_a_to_b.c
+STACK_DIR_SRC			= stack/
+STACK_SRC				= stack.c
+
+SRC						= main.c \
+						$(addprefix $(SORT_DIR_SRC), $(SORT_SRC)) \
+						$(addprefix $(STACK_DIR_SRC), $(STACK_SRC))
 SRCS					= $(addprefix $(SRCS_DIR), $(SRC))
 OBJS					= $(SRCS:.c=.o)
 

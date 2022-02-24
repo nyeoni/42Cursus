@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 01:47:12 by nkim              #+#    #+#             */
-/*   Updated: 2022/02/24 02:23:55 by nkim             ###   ########.fr       */
+/*   Updated: 2022/02/24 21:39:53 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void swap(t_stack *stack)
 {
-	t_list *a;
-	t_list *b;
+	t_node *a;
+	t_node *b;
 
 	if (stack->len < 2)
 		return ;
@@ -23,7 +23,12 @@ void swap(t_stack *stack)
 		stack->tail = stack->head;
 	a = stack->head;
 	b = stack->head->next;
-	stack->head = a->next;
+
+	a->next = b->next;
+	a->prev = b;
+	b->next = a;
+	b->prev = NULL;
+	
+	stack->head = b;
 	stack->head->next = a;
-	stack->head->next->next = b->next;
 }

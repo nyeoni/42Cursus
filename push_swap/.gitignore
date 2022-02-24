@@ -1,0 +1,4 @@
+*.out
+push_swap
+*.dSYM
+*.o

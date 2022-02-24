@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 01:48:48 by nkim              #+#    #+#             */
-/*   Updated: 2022/02/24 21:57:07 by nkim             ###   ########.fr       */
+/*   Updated: 2022/02/25 00:30:39 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void reverse_rotate(t_stack *stack)
 	stack->tail->next = NULL;
 
 	tail->next = stack->head;
+	stack->head->prev = tail;
 	stack->head = tail;
 	stack->head->prev = NULL;
 }

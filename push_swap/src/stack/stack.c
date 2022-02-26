@@ -6,67 +6,11 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 23:39:50 by nkim              #+#    #+#             */
-/*   Updated: 2022/02/24 22:12:42 by nkim             ###   ########.fr       */
+/*   Updated: 2022/02/24 22:40:13 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void print_stacks(t_stacks *stacks)
-{
-	t_node *a;
-	t_node *b;
-	int i;
-
-	a = stacks->a.head;
-	b = stacks->b.head;
-	printf("----------------------------\n");
-
-	i = 0;
-	printf("a | ");
-	while (i < stacks->a.len)
-	{
-		printf("%s ", ft_itoa(a->content));
-		a = a->next;
-		i++;
-	}
-	printf("\n");
-	printf("b | ");
-	i = 0;
-	while (i < stacks->b.len)
-	{
-		printf("%d ",  b->content);
-		b = b->next;
-		i++;
-	}
-	printf("\n");
-
-	if (stacks->a.len > 0)
-	{
-		printf("a->head: %d\n", stacks->a.head->content);
-		printf("a->tail: %d\n", stacks->a.tail->content);
-	}
-	else
-	{
-		printf("a->head: %s\n", "(null)");
-		printf("a->tail: %s\n", "(null)");
-	}
-	printf("a->len: %d\n", stacks->a.len);
-
-	if (stacks->b.len > 0)
-	{
-		printf("b->head: %d\n", stacks->b.head->content);
-		printf("b->tail: %d\n", stacks->b.tail->content);
-	}
-	else
-	{
-		printf("b->head: %s\n", "(null)");
-		printf("b->tail: %s\n", "(null)");
-	}
-	printf("b->len: %d\n", stacks->b.len);
-
-	printf("------------------------------\n\n");
-}
 
 t_node *create_node(char *arg)
 {

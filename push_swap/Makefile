@@ -6,7 +6,7 @@
 #    By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/17 17:20:19 by nkim              #+#    #+#              #
-#    Updated: 2022/02/24 01:48:24 by nkim             ###   ########.fr        #
+#    Updated: 2022/02/26 22:21:27 by nkim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,19 +27,27 @@ SRCS_DIR				= ./src/
 INCS					= -I include
 
 SORT_DIR_SRC			= sort/
-SORT_SRC				= sort_a_to_b.c
+SORT_SRC				= pivot.c sort_a_to_b.c sort_b_to_a.c \
+						sort_some.c validate.c
+
 STACK_DIR_SRC			= stack/
 STACK_SRC				= stack.c
+
 OPERATOR_DIR_SRC		= operator/
-OPERATOR_SRC			= swap.c push.c rotate.c reverse_rotate.c
+OPERATOR_SRC			= operator.c swap.c push.c rotate.c reverse_rotate.c
+
 UTILS_DIR_SRC			= utils/
 UTILS_SRC				= error.c
+
+TEST_DIR_SRC			= __test__/
+TEST_SRC				= test.c print.c
 
 SRC						= main.c \
 						$(addprefix $(SORT_DIR_SRC), $(SORT_SRC)) \
 						$(addprefix $(STACK_DIR_SRC), $(STACK_SRC)) \
 						$(addprefix $(OPERATOR_DIR_SRC), $(OPERATOR_SRC)) \
-						$(addprefix $(UTILS_DIR_SRC), $(UTILS_SRC))
+						$(addprefix $(UTILS_DIR_SRC), $(UTILS_SRC)) \
+						$(addprefix $(TEST_DIR_SRC), $(TEST_SRC))
 SRCS					= $(addprefix $(SRCS_DIR), $(SRC))
 OBJS					= $(SRCS:.c=.o)
 

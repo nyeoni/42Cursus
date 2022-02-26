@@ -6,27 +6,26 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 01:48:48 by nkim              #+#    #+#             */
-/*   Updated: 2022/02/25 00:30:39 by nkim             ###   ########.fr       */
+/*   Updated: 2022/02/25 03:35:23 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void reverse_rotate(t_stack *stack)
+int reverse_rotate(t_stack *stack)
 {
 	t_node *tail;
 
 	if (stack->len < 2)
-		return ;
+		return 0;
 	tail = stack->tail;
-	printf("tail %d\n", stack->tail->content);
 
 	stack->tail = tail->prev;
-	printf("tail prev %d\n", stack->tail->content);
 	stack->tail->next = NULL;
 
 	tail->next = stack->head;
 	stack->head->prev = tail;
 	stack->head = tail;
 	stack->head->prev = NULL;
+	return 1;
 }

@@ -6,18 +6,18 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 01:48:48 by nkim              #+#    #+#             */
-/*   Updated: 2022/02/24 21:58:45 by nkim             ###   ########.fr       */
+/*   Updated: 2022/02/25 01:16:08 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void rotate(t_stack *stack)
+int rotate(t_stack *stack)
 {
 	t_node *head;
 
 	if (stack->len < 2)
-		return ;
+		return 0;
 	head = stack->head;
 
 	stack->head = stack->head->next;
@@ -27,4 +27,5 @@ void rotate(t_stack *stack)
 	stack->tail->next = head;
 	stack->tail = head;
 	stack->tail->next = NULL;
+	return 1;
 }

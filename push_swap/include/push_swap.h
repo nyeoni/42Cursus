@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:57:23 by nkim              #+#    #+#             */
-/*   Updated: 2022/02/26 22:21:47 by nkim             ###   ########.fr       */
+/*   Updated: 2022/02/27 18:14:18 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 #define RA_CNT 0
 #define PB_CNT 1
+#define PA_CNT 1
 #define RB_CNT 2
 
 #define TRUE 1
@@ -56,7 +57,8 @@ void init_stacks(t_stacks *stacks, int argc, char **argv);
 /* SORT */
 void select_pivot(int pivot[2], t_stack stack, int len);
 void sort_a_to_b(t_stacks *stacks, int cnt);
-void sort_three_or_under(t_stacks *stacks, t_stack *stack, int len);
+void sort_b_to_a(t_stacks *stacks, int len);
+void sort_three_or_under(t_stacks *stacks, int len);
 int is_ascending(t_stack *stack, int len);
 int is_descending(t_stack *stack, int len);
 

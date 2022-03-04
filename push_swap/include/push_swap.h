@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:57:23 by nkim              #+#    #+#             */
-/*   Updated: 2022/02/27 18:14:18 by nkim             ###   ########.fr       */
+/*   Updated: 2022/03/04 18:17:06 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void select_pivot(int pivot[2], t_stack stack, int len);
 void sort_a_to_b(t_stacks *stacks, int cnt);
 void sort_b_to_a(t_stacks *stacks, int len);
 void sort_three_or_under(t_stacks *stacks, int len);
+void sort_four(t_stacks *stacks);
+void sort_five(t_stacks *stacks);
 int is_ascending(t_stack *stack, int len);
 int is_descending(t_stack *stack, int len);
 
@@ -70,6 +72,7 @@ int rotate(t_stack *stack);
 int reverse_rotate(t_stack *stack);
 
 /* UTILS */
+int	array_to_int(const char *str);
 void	throw_error();
 
 /* TEST */

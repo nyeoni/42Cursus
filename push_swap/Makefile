@@ -6,7 +6,7 @@
 #    By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/17 17:20:19 by nkim              #+#    #+#              #
-#    Updated: 2022/02/26 22:21:27 by nkim             ###   ########.fr        #
+#    Updated: 2022/03/03 14:18:01 by nkim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ OPERATOR_DIR_SRC		= operator/
 OPERATOR_SRC			= operator.c swap.c push.c rotate.c reverse_rotate.c
 
 UTILS_DIR_SRC			= utils/
-UTILS_SRC				= error.c
+UTILS_SRC				= array_to_int.c error.c
 
 TEST_DIR_SRC			= __test__/
 TEST_SRC				= test.c print.c

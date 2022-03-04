@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 01:48:48 by nkim              #+#    #+#             */
-/*   Updated: 2022/02/25 03:35:23 by nkim             ###   ########.fr       */
+/*   Updated: 2022/02/28 01:48:27 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,14 @@ int reverse_rotate(t_stack *stack)
 	tail = stack->tail;
 
 	stack->tail = tail->prev;
-	stack->tail->next = NULL;
+	if (stack->tail)
+		stack->tail->next = NULL;
 
 	tail->next = stack->head;
 	stack->head->prev = tail;
 	stack->head = tail;
 	stack->head->prev = NULL;
+	if (stack->len == 2 && stack->tail)
+		stack->tail->prev = stack->head;
 	return 1;
 }

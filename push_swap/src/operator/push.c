@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 01:48:48 by nkim              #+#    #+#             */
-/*   Updated: 2022/02/25 01:15:51 by nkim             ###   ########.fr       */
+/*   Updated: 2022/02/28 14:52:10 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int push(t_stack *from, t_stack *to)
 		from->tail = NULL;
 
 	target->next = to->head;
+	if (target->next)
+		target->next->prev = target;
 	to->head = target;
 	to->len++;
 	if (to->len == 1)

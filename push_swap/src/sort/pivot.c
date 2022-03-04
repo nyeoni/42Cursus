@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 19:33:45 by nkim              #+#    #+#             */
-/*   Updated: 2022/02/26 19:34:12 by nkim             ###   ########.fr       */
+/*   Updated: 2022/03/04 17:35:21 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ void select_pivot(int pivot[2], t_stack stack, int len)
 			pivot[LARGE] = tmp1->content;
 		tmp1 = tmp1->next;
 	}
-	printf("pivot[SMALL]: %d\n", pivot[SMALL]);
-	printf("pivot[LARGE]: %d\n", pivot[LARGE]);
+	// printf("pivot[SMALL]: %d\n", pivot[SMALL]);
+	// printf("pivot[LARGE]: %d\n", pivot[LARGE]);
 }

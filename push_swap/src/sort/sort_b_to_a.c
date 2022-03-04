@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 17:08:08 by nkim              #+#    #+#             */
-/*   Updated: 2022/02/27 18:56:05 by nkim             ###   ########.fr       */
+/*   Updated: 2022/03/04 16:19:47 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void move_b_to_a(t_stacks *stacks, int pivot[2], int cnt[3], int len)
 {
-	printf("move b to a---\n");
+	// printf("move b to a---\n");
 	while (len--)
 	{
-		print_stacks(stacks);
+		// print_stacks(stacks);
 		if (stacks->b.head->content < pivot[SMALL])
 		{
 			operator("rb", stacks);
@@ -41,10 +41,10 @@ void move_b_to_a(t_stacks *stacks, int pivot[2], int cnt[3], int len)
 			}
 		}
 	}
-	print_stacks(stacks);
-	printf("RB_CNT: %d\n", cnt[RB_CNT]);
-	printf("PA_CNT: %d\n", cnt[PA_CNT]);
-	printf("RA_CNT: %d\n", cnt[RA_CNT]);
+	// print_stacks(stacks);
+	// printf("RB_CNT: %d\n", cnt[RB_CNT]);
+	// printf("PA_CNT: %d\n", cnt[PA_CNT]);
+	// printf("RA_CNT: %d\n", cnt[RA_CNT]);
 }
 
 static void rotate_back(t_stacks *stacks, int ra_cnt, int rb_cnt)
@@ -62,6 +62,32 @@ static void rotate_back(t_stacks *stacks, int ra_cnt, int rb_cnt)
 	}
 }
 
+// static void push_b_to_a(t_stacks *stacks, int len)
+// {
+// 	t_stack *stack;
+
+// 	stack = &stacks->b;
+// 	if (len == 2 && stack->head->content < stack->head->next->content)
+// 		operator("sb", stacks);
+// 	else if (len == 3 && is_ascending(stack, len))
+// 	{
+// 		operator("sb", stacks);
+// 		operator("rrb", stacks);
+// 	}
+// 	else if (len == 3 && !is_descending(stack, len))
+// 	{
+// 		if (stack->head->next->content < stack->head->next->next->content)
+// 			operator("rrb", stacks);
+// 		if (!is_descending(stack, len)
+// 			&& stack->head->next->content > stack->head->next->next->content)
+// 			operator("sb", stacks);
+// 		else if (!is_descending(stack, len))
+// 			operator("rsb", stacks);
+// 	}
+// 	while (len--)
+// 		operator("pa", stacks);
+// }
+
 static void push_b_to_a(t_stacks *stacks, int len)
 {
 	t_stack *stack;
@@ -69,20 +95,18 @@ static void push_b_to_a(t_stacks *stacks, int len)
 	stack = &stacks->b;
 	if (len == 2 && stack->head->content < stack->head->next->content)
 		operator("sb", stacks);
-	else if (len == 3 && is_ascending(stack, len))
-	{
-		operator("sb", stacks);
-		operator("rrb", stacks);
-	}
 	else if (len == 3 && !is_descending(stack, len))
 	{
-		if (stack->head->next->content < stack->head->next->next->content)
-			operator("rrb", stacks);
-		if (!is_descending(stack, len)
-			&& stack->head->next->content > stack->head->next->next->content)
+		if (stack->head->content < stack->head->next->content)
 			operator("sb", stacks);
-		else if (!is_descending(stack, len))
+		if (!is_descending(stack, len))
+		{
 			operator("rb", stacks);
+			operator("sb", stacks);
+			operator("rrb", stacks);
+		}
+		if (stack->head->content < stack->head->next->content)
+			operator("sb", stacks);
 	}
 	while (len--)
 		operator("pa", stacks);

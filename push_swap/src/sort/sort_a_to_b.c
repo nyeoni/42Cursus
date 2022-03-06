@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 23:19:31 by nkim              #+#    #+#             */
-/*   Updated: 2022/03/04 16:44:48 by nkim             ###   ########.fr       */
+/*   Updated: 2022/03/05 15:29:45 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void move_a_to_b(t_stacks *stacks, int pivot[2], int cnt[3], int len)
 			++cnt[PB_CNT];
 			if (stacks->b.head->content >= pivot[SMALL])
 			{
-				if (len && stacks->a.head->content >= pivot[LARGE])
+				if (stacks->b.len > 1 && len && stacks->a.head->content >= pivot[LARGE])
 				{
 					operator("rr", stacks);
 					len--;

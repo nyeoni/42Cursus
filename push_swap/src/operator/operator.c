@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 01:28:05 by nkim              #+#    #+#             */
-/*   Updated: 2022/02/28 01:36:35 by nkim             ###   ########.fr       */
+/*   Updated: 2022/03/05 15:31:27 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,6 @@ void operator(char *op, t_stacks *stacks)
 	else if (!ft_strcmp(op, "rrr") && reverse_rotate(&stacks->a)
 		&& reverse_rotate(&stacks->b))
 		ft_putstr_fd("rrr\n", 1);
+
+	// print_stacks(stacks);
 }

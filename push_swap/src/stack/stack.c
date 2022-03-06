@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 23:39:50 by nkim              #+#    #+#             */
-/*   Updated: 2022/03/03 18:09:16 by nkim             ###   ########.fr       */
+/*   Updated: 2022/03/06 19:09:57 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,20 @@ t_node *init_head(char *argv, t_stack *stack)
 	return tmp;
 }
 
+void free_stacks(t_stacks *stacks)
+{
+	t_node *tmp;
+	t_node *target;
+
+	tmp = stacks->a.head;
+	while (tmp)
+	{
+		target = tmp;
+		tmp = tmp->next;
+		free(target);
+	}
+}
+
 void init_stacks(t_stacks *stacks, int argc, char **argv)
 {
 	int i;
@@ -94,4 +108,5 @@ void init_stacks(t_stacks *stacks, int argc, char **argv)
 	tmp->next = NULL;
 	stacks->a.tail = tmp;
 	ft_memset(&stacks->b, 0, sizeof(t_stack));
+	validate_nodes(stacks);
 }

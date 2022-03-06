@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:57:23 by nkim              #+#    #+#             */
-/*   Updated: 2022/03/04 18:17:06 by nkim             ###   ########.fr       */
+/*   Updated: 2022/03/06 19:09:29 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct s_stacks {
 
 /* STACK */
 void init_stacks(t_stacks *stacks, int argc, char **argv);
+void free_stacks(t_stacks *stacks);
+void validate_nodes(t_stacks *stacks);
 
 /* SORT */
 void select_pivot(int pivot[2], t_stack stack, int len);

@@ -6,18 +6,18 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 01:48:48 by nkim              #+#    #+#             */
-/*   Updated: 2022/02/28 14:52:10 by nkim             ###   ########.fr       */
+/*   Updated: 2022/03/10 00:25:14 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int push(t_stack *from, t_stack *to)
+int	push(t_stack *from, t_stack *to)
 {
-	t_node *target;
+	t_node	*target;
 
 	if (!from->head)
-		return 0;
+		return (0);
 	target = from->head;
 	from->head = target->next;
 	from->len--;
@@ -25,7 +25,6 @@ int push(t_stack *from, t_stack *to)
 		from->head->prev = NULL;
 	else
 		from->tail = NULL;
-
 	target->next = to->head;
 	if (target->next)
 		target->next->prev = target;
@@ -33,5 +32,5 @@ int push(t_stack *from, t_stack *to)
 	to->len++;
 	if (to->len == 1)
 		to->tail = to->head;
-	return 1;
+	return (1);
 }

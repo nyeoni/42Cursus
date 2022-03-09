@@ -6,13 +6,13 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 01:28:05 by nkim              #+#    #+#             */
-/*   Updated: 2022/03/05 15:31:27 by nkim             ###   ########.fr       */
+/*   Updated: 2022/03/10 00:26:53 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void operator(char *op, t_stacks *stacks)
+void	operator(char *op, t_stacks *stacks)
 {
 	if (!ft_strcmp(op, "sa") && swap(&stacks->a))
 		ft_putstr_fd("sa\n", 1);
@@ -34,9 +34,7 @@ void operator(char *op, t_stacks *stacks)
 		ft_putstr_fd("rra\n", 1);
 	else if (!ft_strcmp(op, "rrb") && reverse_rotate(&stacks->b))
 		ft_putstr_fd("rrb\n", 1);
-	else if (!ft_strcmp(op, "rrr") && reverse_rotate(&stacks->a)
-		&& reverse_rotate(&stacks->b))
+	else if (!ft_strcmp(op, "rrr") && reverse_rotate(&stacks->a) \
+				&& reverse_rotate(&stacks->b))
 		ft_putstr_fd("rrr\n", 1);
-
-	// print_stacks(stacks);
 }

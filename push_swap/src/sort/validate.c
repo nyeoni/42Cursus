@@ -6,16 +6,16 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 19:14:12 by nkim              #+#    #+#             */
-/*   Updated: 2022/02/26 19:14:28 by nkim             ###   ########.fr       */
+/*   Updated: 2022/03/10 00:27:54 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int is_ascending(t_stack *stack, int len)
+int	is_ascending(t_stack *stack, int len)
 {
-	t_node *tmp;
-	int i;
+	t_node	*tmp;
+	int		i;
 
 	tmp = stack->head;
 	i = 0;
@@ -29,10 +29,10 @@ int is_ascending(t_stack *stack, int len)
 	return (TRUE);
 }
 
-int is_descending(t_stack *stack, int len)
+int	is_descending(t_stack *stack, int len)
 {
-	t_node *tmp;
-	int i;
+	t_node	*tmp;
+	int		i;
 
 	tmp = stack->head;
 	i = 0;

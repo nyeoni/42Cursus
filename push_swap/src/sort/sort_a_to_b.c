@@ -6,21 +6,20 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 23:19:31 by nkim              #+#    #+#             */
-/*   Updated: 2022/03/05 15:29:45 by nkim             ###   ########.fr       */
+/*   Updated: 2022/03/10 14:32:06 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void sort_three_or_under_chunk(t_stacks *stacks, int len)
+void	sort_three_or_under_chunk(t_stacks *stacks, int len)
 {
-	t_stack *stack;
+	t_stack	*stack;
 
 	stack = &stacks->a;
 	if (len < 2)
 		return ;
-	else if (len == 2
-		&& stack->head->content > stack->head->next->content)
+	else if (len == 2 && stack->head->content > stack->head->next->content)
 		operator("sa", stacks);
 	if (len == 3 && !is_ascending(stack, 3))
 	{
@@ -37,36 +36,31 @@ void sort_three_or_under_chunk(t_stacks *stacks, int len)
 	}
 }
 
-void move_a_to_b(t_stacks *stacks, int pivot[2], int cnt[3], int len)
+void	move_a_to_b(t_stacks *stacks, int pivot[2], int cnt[3], int len)
 {
 	while (len--)
 	{
 		if (stacks->a.head->content >= pivot[LARGE])
-		{
-			operator("ra", stacks);
-			++cnt[RA_CNT];
-		}
+			operator_and_cnt("ra", cnt, stacks);
 		else
 		{
-			operator("pb", stacks);
-			++cnt[PB_CNT];
+			operator_and_cnt("pb", cnt, stacks);
 			if (stacks->b.head->content >= pivot[SMALL])
 			{
-				if (stacks->b.len > 1 && len && stacks->a.head->content >= pivot[LARGE])
+				if (stacks->b.len > 1 && len \
+					&& stacks->a.head->content >= pivot[LARGE])
 				{
-					operator("rr", stacks);
+					operator_and_cnt("rr", cnt, stacks);
 					len--;
-					++cnt[RA_CNT];
 				}
 				else
-					operator("rb", stacks);
-				++cnt[RB_CNT];
+					operator_and_cnt("rb", cnt, stacks);
 			}
 		}
 	}
 }
 
-static void rotate_back(t_stacks *stacks, int ra_cnt, int rb_cnt)
+static void	rotate_back(t_stacks *stacks, int ra_cnt, int rb_cnt)
 {
 	while (ra_cnt > 0 || rb_cnt > 0)
 	{
@@ -81,30 +75,18 @@ static void rotate_back(t_stacks *stacks, int ra_cnt, int rb_cnt)
 	}
 }
 
-void sort_a_to_b(t_stacks *stacks, int len)
+void	sort_a_to_b(t_stacks *stacks, int len)
 {
-	int pivot[2];
-	int cnt[3];
+	int	pivot[2];
+	int	cnt[3];
 
 	if (len <= 3)
 		return (sort_three_or_under_chunk(stacks, len));
 	ft_memset(cnt, 0, sizeof(cnt));
 	select_pivot(pivot, stacks->a, len);
-	// print_stacks(stacks);
 	move_a_to_b(stacks, pivot, cnt, len);
-	// print_stacks(stacks);
-	// print_all_node(&stacks->a);
 	rotate_back(stacks, cnt[RA_CNT], cnt[RB_CNT]);
-	// print_stacks(stacks);
-	// print_all_node(&stacks->a);
 	sort_a_to_b(stacks, cnt[RA_CNT]);
-	// print_stacks(stacks);
-	// print_all_node(&stacks->a);
 	sort_b_to_a(stacks, cnt[RB_CNT]);
-	// print_stacks(stacks);
-	// print_all_node(&stacks->a);
 	sort_b_to_a(stacks, cnt[PB_CNT] - cnt[RB_CNT]);
-	// print_all_node(&stacks->a);
-
-	// print_stacks(stacks);
 }

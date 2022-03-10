@@ -6,18 +6,18 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 18:55:45 by nkim              #+#    #+#             */
-/*   Updated: 2022/03/06 19:09:32 by nkim             ###   ########.fr       */
+/*   Updated: 2022/03/10 15:55:46 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void validate_nodes(t_stacks *stacks)
+void	validate_nodes(t_stacks *stacks)
 {
-	t_node *tmp1;
-	t_node *tmp2;
-	int i;
-	int j;
+	t_node	*tmp1;
+	t_node	*tmp2;
+	int		i;
+	int		j;
 
 	tmp1 = stacks->a.head;
 	i = -1;

@@ -6,29 +6,28 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 23:39:50 by nkim              #+#    #+#             */
-/*   Updated: 2022/03/06 19:09:57 by nkim             ###   ########.fr       */
+/*   Updated: 2022/03/10 15:55:36 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node *create_node(char *arg)
+t_node	*create_node(char *arg)
 {
-	long long content;
-	t_node *node;
+	long long	content;
+	t_node		*node;
 
 	content = array_to_int(arg);
 	if (content > 2147483647 || content < -2147483648)
 		throw_error();
 	node = (t_node *)malloc(sizeof(t_node));
 	node->content = (int)content;
-
 	return (node);
 }
 
 t_node	*split_argv(char *argv, t_node *tmp, t_stack *stack)
 {
-	char **node_arr;
+	char	**node_arr;
 
 	node_arr = ft_split(argv, ' ');
 	while (*node_arr)
@@ -39,14 +38,14 @@ t_node	*split_argv(char *argv, t_node *tmp, t_stack *stack)
 		stack->len++;
 		node_arr++;
 	}
-	return tmp;
+	return (tmp);
 }
 
-t_node *init_head(char *argv, t_stack *stack)
+t_node	*init_head(char *argv, t_stack *stack)
 {
-	char *head;
-	int len;
-	t_node *tmp;
+	char	*head;
+	int		len;
+	t_node	*tmp;
 
 	stack->len = 0;
 	if (!ft_strchr(argv, ' '))
@@ -68,13 +67,13 @@ t_node *init_head(char *argv, t_stack *stack)
 		tmp = split_argv(argv + len, tmp, stack);
 		free(head);
 	}
-	return tmp;
+	return (tmp);
 }
 
-void free_stacks(t_stacks *stacks)
+void	free_stacks(t_stacks *stacks)
 {
-	t_node *tmp;
-	t_node *target;
+	t_node	*tmp;
+	t_node	*target;
 
 	tmp = stacks->a.head;
 	while (tmp)
@@ -85,10 +84,10 @@ void free_stacks(t_stacks *stacks)
 	}
 }
 
-void init_stacks(t_stacks *stacks, int argc, char **argv)
+void	init_stacks(t_stacks *stacks, int argc, char **argv)
 {
-	int i;
-	t_node *tmp;
+	int		i;
+	t_node	*tmp;
 
 	i = 0;
 	tmp = init_head(argv[i++], &stacks->a);

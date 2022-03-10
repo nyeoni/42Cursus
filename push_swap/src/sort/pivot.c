@@ -6,19 +6,19 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 19:33:45 by nkim              #+#    #+#             */
-/*   Updated: 2022/03/05 15:41:20 by nkim             ###   ########.fr       */
+/*   Updated: 2022/03/10 00:28:26 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void select_pivot(int pivot[2], t_stack stack, int len)
+void	select_pivot(int pivot[2], t_stack stack, int len)
 {
-	t_node *tmp1;
-	t_node *tmp2;
-	int cnt;
-	int i;
-	int j;
+	t_node	*tmp1;
+	t_node	*tmp2;
+	int		cnt;
+	int		i;
+	int		j;
 
 	tmp1 = stack.head;
 	i = -1;
@@ -39,6 +39,4 @@ void select_pivot(int pivot[2], t_stack stack, int len)
 			pivot[LARGE] = tmp1->content;
 		tmp1 = tmp1->next;
 	}
-	// printf("pivot[SMALL]: %d\n", pivot[SMALL]);
-	// printf("pivot[LARGE]: %d\n", pivot[LARGE]);
 }

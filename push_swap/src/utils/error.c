@@ -6,13 +6,13 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 00:03:18 by nkim              #+#    #+#             */
-/*   Updated: 2022/02/24 00:51:01 by nkim             ###   ########.fr       */
+/*   Updated: 2022/03/10 16:01:50 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	throw_error()
+void	throw_error(void)
 {
 	ft_putstr_fd("\033[31mError\n\033[0m", 2);
 	exit(EXIT_FAILURE);

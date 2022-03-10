@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 15:36:34 by nkim              #+#    #+#             */
-/*   Updated: 2022/03/03 21:24:33 by nkim             ###   ########.fr       */
+/*   Updated: 2022/03/10 16:01:09 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,10 @@ int	array_to_int(const char *str)
 {
 	long long	res;
 	long long	tmp;
-	int	is_minus;
-	int	len;
-	int	i;
+	int			is_minus;
+	int			i;
 
 	i = 0;
-	len = ft_strlen(str);
 	is_minus = 1;
 	if (str[i] == '-' || str[i] == '+')
 	{
@@ -39,7 +37,7 @@ int	array_to_int(const char *str)
 	if (!ft_isdigit(str[i]))
 		throw_error();
 	res = 0;
-	while (i < len)
+	while (i < ft_strlen(str))
 	{
 		if (!ft_isdigit(str[i]))
 			throw_error();

@@ -6,15 +6,15 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 17:12:16 by nkim              #+#    #+#             */
-/*   Updated: 2022/03/04 18:45:28 by nkim             ###   ########.fr       */
+/*   Updated: 2022/03/10 00:27:50 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void sort_three(t_stacks *stacks)
+void	sort_three(t_stacks *stacks)
 {
-	t_stack *stack;
+	t_stack	*stack;
 
 	stack = &stacks->a;
 	if (is_ascending(&stacks->a, 3) || is_descending(stack, 3))
@@ -29,31 +29,30 @@ void sort_three(t_stacks *stacks)
 	}
 	if (stack->head->next->content > stack->head->next->next->content)
 		operator("rra", stacks);
-	if (!is_ascending(&stacks->a, 3)
-		&& stack->head->content < stack->head->next->next->content)
+	if (!is_ascending(&stacks->a, 3) &&
+		stack->head->content < stack->head->next->next->content)
 		operator("sa", stacks);
 	else if (!is_ascending(stack, 3))
 		operator("ra", stacks);
 }
 
-void sort_three_or_under(t_stacks *stacks, int len)
+void	sort_three_or_under(t_stacks *stacks, int len)
 {
-	t_stack *stack;
+	t_stack	*stack;
 
 	stack = &stacks->a;
 	if (len < 2)
 		return ;
-	else if (len == 2
-		&& stack->head->content > stack->head->next->content)
+	else if (len == 2 && stack->head->content > stack->head->next->content)
 		operator("sa", stacks);
 	else if (len == 3)
-		return sort_three(stacks);
+		return (sort_three(stacks));
 }
 
-void sort_four(t_stacks *stacks)
+void	sort_four(t_stacks *stacks)
 {
-	t_node *tmp;
-	int min;
+	t_node	*tmp;
+	int		min;
 
 	tmp = stacks->a.head;
 	min = tmp->content;
@@ -70,9 +69,9 @@ void sort_four(t_stacks *stacks)
 	operator("pa", stacks);
 }
 
-void get_two_min_node(int min[2], t_stack *stack)
+void	get_two_min_node(int min[2], t_stack *stack)
 {
-	t_node *tmp;
+	t_node	*tmp;
 
 	tmp = stack->head;
 	min[0] = tmp->content;
@@ -94,11 +93,11 @@ void get_two_min_node(int min[2], t_stack *stack)
 	}
 }
 
-void sort_five(t_stacks *stacks)
+void	sort_five(t_stacks *stacks)
 {
-	t_stack *stack;
-	int min[2];
-	int i;
+	t_stack	*stack;
+	int		min[2];
+	int		i;
 
 	stack = &stacks->a;
 	get_two_min_node(min, stack);

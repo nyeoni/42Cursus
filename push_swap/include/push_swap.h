@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:57:23 by nkim              #+#    #+#             */
-/*   Updated: 2022/03/06 19:09:29 by nkim             ###   ########.fr       */
+/*   Updated: 2022/03/10 00:47:31 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int is_descending(t_stack *stack, int len);
 
 /* OPERATOR */
 void operator(char *op, t_stacks *stacks);
+void	operator_and_cnt(char *op, int cnt[3], \
+							t_stacks *stacks);
 int swap(t_stack *stack);
 int push(t_stack *from, t_stack *to);
 int rotate(t_stack *stack);

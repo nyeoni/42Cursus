@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 01:28:05 by nkim              #+#    #+#             */
-/*   Updated: 2022/03/10 00:26:53 by nkim             ###   ########.fr       */
+/*   Updated: 2022/03/10 14:31:46 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,31 @@ void	operator(char *op, t_stacks *stacks)
 	else if (!ft_strcmp(op, "rrr") && reverse_rotate(&stacks->a) \
 				&& reverse_rotate(&stacks->b))
 		ft_putstr_fd("rrr\n", 1);
+}
+
+void	operator_and_cnt(char *op, int cnt[3], t_stacks *stacks)
+{
+	if (!ft_strcmp(op, "ra"))
+		++cnt[RA_CNT];
+	else if (!ft_strcmp(op, "rb"))
+		++cnt[RB_CNT];
+	else if (!ft_strcmp(op, "pa"))
+		++cnt[PA_CNT];
+	else if (!ft_strcmp(op, "pb"))
+		++cnt[PB_CNT];
+	else if (!ft_strcmp(op, "rr"))
+	{
+		++cnt[RA_CNT];
+		++cnt[RB_CNT];
+	}
+	if (!ft_strcmp(op, "ra"))
+		operator("ra", stacks);
+	else if (!ft_strcmp(op, "rb"))
+		operator("rb", stacks);
+	else if (!ft_strcmp(op, "rr"))
+		operator("rr", stacks);
+	else if (!ft_strcmp(op, "pa"))
+		operator("pa", stacks);
+	else if (!ft_strcmp(op, "pb"))
+		operator("pb", stacks);
 }

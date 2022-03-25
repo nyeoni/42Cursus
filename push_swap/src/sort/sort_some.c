@@ -29,7 +29,7 @@ void	sort_three(t_stacks *stacks)
 	}
 	if (stack->head->next->content > stack->head->next->next->content)
 		operator("rra", stacks);
-	if (!is_ascending(&stacks->a, 3) 
+	if (!is_ascending(&stacks->a, 3) \
 		&& stack->head->content < stack->head->next->next->content)
 		operator("sa", stacks);
 	else if (!is_ascending(stack, 3))

@@ -25,13 +25,5 @@ int	main(int argc, char **argv)
 		sort_five(&stacks);
 	else
 		sort_a_to_b(&stacks, stacks.a.len);
-
-	// print_stacks(&stacks);
 	free_stacks(&stacks);
-	// if (is_ascending(&stacks.a, stacks.a.len))
-	// 	printf("OK\n");
-	// else
-	// 	printf("KO\n");
-	// free 하는거랑
-	// validate
 }

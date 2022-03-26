@@ -6,11 +6,12 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 22:39:26 by nkim              #+#    #+#             */
-/*   Updated: 2022/02/28 01:42:14 by nkim             ###   ########.fr       */
+/*   Updated: 2022/03/26 14:19:10 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 void test_all_op(t_stacks *stacks)
 {

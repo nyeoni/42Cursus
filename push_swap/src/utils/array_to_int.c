@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 15:36:34 by nkim              #+#    #+#             */
-/*   Updated: 2022/03/10 16:01:09 by nkim             ###   ########.fr       */
+/*   Updated: 2022/03/26 14:24:49 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ static int	ctoi(char c)
 	return (res);
 }
 
-int	array_to_int(const char *str)
+long long	array_to_int(const char *str)
 {
 	long long	res;
 	long long	tmp;
 	int			is_minus;
-	int			i;
+	size_t		i;
 
 	i = 0;
 	is_minus = 1;
@@ -46,5 +46,5 @@ int	array_to_int(const char *str)
 			throw_error();
 		res = tmp;
 	}
-	return ((int)(is_minus * res));
+	return ((long long)(is_minus * res));
 }

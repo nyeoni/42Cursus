@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:57:23 by nkim              #+#    #+#             */
-/*   Updated: 2022/03/25 13:32:06 by nkim             ###   ########.fr       */
+/*   Updated: 2022/03/26 14:32:44 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@
 
 # define TRUE 1
 # define FALSE 0
-
-typedef struct s_list	t_list;
 
 typedef struct s_node
 {
@@ -75,7 +73,7 @@ int						rotate(t_stack *stack);
 int						reverse_rotate(t_stack *stack);
 
 /* UTILS */
-int						array_to_int(const char *str);
+long long				array_to_int(const char *str);
 void					throw_error(void);
 
 /* TEST */

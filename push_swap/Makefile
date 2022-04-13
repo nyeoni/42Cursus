@@ -6,7 +6,7 @@
 #    By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/17 17:20:19 by nkim              #+#    #+#              #
-#    Updated: 2022/03/06 19:09:42 by nkim             ###   ########.fr        #
+#    Updated: 2022/04/13 19:51:36 by nkim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ $(NAME) : $(OBJS)
 	@echo "\033[33m----Compiling lib----"
 	make -C $(LIBFT_DIR)
 	$(CC) -o $(NAME) $(OBJS) $(LIBFT_FLAGS) -I $(INCS_DIR)
-	@echo "\n----Pipex Compiled! 😻----"
+	@echo "\n----Push_swap Compiled! 😻----"
 
 all : $(NAME)
 

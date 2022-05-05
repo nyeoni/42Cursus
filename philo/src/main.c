@@ -6,28 +6,40 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:18:06 by nkim              #+#    #+#             */
-/*   Updated: 2022/04/22 17:34:02 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/05 14:51:33 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void init() {}
+int run_philos(t_manager *manager) {
+	int i;
+
+	i = 0;
+	manager->start_ms_time = get_ms_time();
+	while (i < manager->number_of_philos)
+	{
+		if (pthread_create(&manager->philos[i].thread, NULL, philo, (void *)&manager->philos[i]))
+			return (pthread_error(manager, i));
+		i++;
+	}
+	return (SUCCESS_FLAG);
+}
 
 int main(int argc, char **argv)
 {
 	t_manager manager;
 
-	if (argc != 4 && argc != 5)
-		return (1);
+	if (argc != 5 && argc != 6)
+		return throw_error("Wrong number of arguments");
+	if (init(&manager, argc, argv))
+		return throw_error("Init failed");
 
-	manager.number_of_philosophers = ft_atoi(argv[1]);
-	manager.time_to_die = ft_atoi(argv[2]);
-	manager.time_to_eat = ft_atoi(argv[3]);
-	manager.time_to_sleep = ft_atoi(argv[4]);
-
-	printf("%d\n",manager.number_of_philosophers);
-	printf("%d\n",manager.time_to_die);
-	printf("%d\n",manager.time_to_eat);
-	printf("%d\n",manager.time_to_sleep);
+	// create philosophers
+	// int i;
+	// i = 0;
+	// while(i < manager.number_of_philos) {
+	// 	pthread_create(&manager.philos[i].thread, NULL, &philosopher, &manager.philos[i]);
+	// 	i++;
+	// }
 }

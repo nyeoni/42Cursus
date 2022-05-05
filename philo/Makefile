@@ -6,7 +6,7 @@
 #    By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/17 17:20:19 by nkim              #+#    #+#              #
-#    Updated: 2022/04/22 17:21:50 by nkim             ###   ########.fr        #
+#    Updated: 2022/05/05 02:22:24 by nkim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ INCS_DIR				= ./include/
 SRCS_DIR				= ./src/
 INCS					= -I include
 
-SRC						= main.c util.c
+SRC						= main.c util.c init.c
 SRCS					= $(addprefix $(SRCS_DIR), $(SRC))
 OBJS					= $(SRCS:.c=.o)
 
@@ -31,7 +31,7 @@ OBJS					= $(SRCS:.c=.o)
 
 $(NAME) : $(OBJS)
 	@echo "\033[33m----Compiling lib----"
-	$(CC) -o $(NAME) $(OBJS) -I $(INCS_DIR)
+	$(CC) -o $(NAME) $(OBJS) -I $(INCS_DIR) -lpthread
 	@echo "\n----Philosopher Compiled! 😻----"
 
 all : $(NAME)
@@ -48,12 +48,10 @@ fclean : clean
 re : fclean all
 
 test :
-	make -C $(LIBFT_DIR)
 	$(CC) -g -o $(NAME) $(SRCS) -I $(INCS_DIR)
 
 leak :
-	make -C $(LIBFT_DIR)
-	$(CC) $(LEAK_FLAGS) -o $(NAME) $(SRCS) -I $(INCS_DIR)
+	$(CC) $(LEAK_FLAGS) -o $(NAME) $(SRCS) -I $(INCS_DIR) -lpthread
 
 norm :
 	norminette $(SRCS) $(INCS_DIR)

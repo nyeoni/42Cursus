@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:18:25 by nkim              #+#    #+#             */
-/*   Updated: 2022/04/22 17:28:09 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/05 14:51:08 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,49 @@
 #include <stdio.h>
 #include <sys/time.h>
 
+#define ERROR_FLAG -1
+#define SUCCESS_FLAG 0
+#define TRUE 1
+#define FALSE 0
+
+typedef struct s_manager t_manager;
+typedef struct s_philo {
+	pthread_t thread;
+	int id;
+	int right;
+	int left;
+	int start_eat_ms_time;
+	int start_sleep_ms_time;
+	t_manager *manager;
+}	t_philo;
+
 typedef struct s_manager {
-	int number_of_philosophers;
+	int number_of_philos;
 	int time_to_die;
 	int time_to_eat;
 	int time_to_sleep;
+	int num_of_time_must_eat;
+	int finish;
+	int start_ms_time;
+	t_philo *philos;
+	pthread_mutex_t *fork;
+	pthread_mutex_t print;
 }	t_manager;
 
-void	throw_error(void);
+/* INIT */
+int init(t_manager *manager, int argc, char **argv);
+
+/* PHILO */
+void *philo(void *argv);
+void *philo_one(t_philo *philo);
+
+/* UTIL */
 int ft_atoi(const char *arr);
+long long get_ms_time();
+size_t	ft_strlen(const char *s);
+
+/* ERROR */
+int pthread_error(t_manager *manager, int thread_cnt);
+int	throw_error(char *msg);
 
 #endif

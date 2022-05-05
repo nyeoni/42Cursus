@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:18:25 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/05 22:04:14 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/05 23:15:48 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_manager {
 	int time_to_sleep;
 	int num_of_time_must_eat;
 	int finish;
+	pthread_mutex_t finish_mutex;
 	long long start_ms_time;
 	t_philo *philos;
 	pthread_mutex_t *fork;

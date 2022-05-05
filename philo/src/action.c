@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 14:59:08 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/05 22:05:47 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/06 00:38:54 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 void print_action(t_philo *philo, char *action_msg)
 {
-	if (!philo->manager->finish)
+	int finish_flag;
+
+	pthread_mutex_lock(&philo->manager->finish_mutex);
+	finish_flag = !philo->manager->finish;
+	pthread_mutex_unlock(&philo->manager->finish_mutex);
+	if (finish_flag)
 	{
 		printf("%lld ", get_ms_time() - philo->manager->start_ms_time);
 		printf("%d ", philo->id);
@@ -44,8 +49,13 @@ void eating(t_philo *philo)
 	usleep(philo->manager->time_to_eat * 1000);
 
 	pthread_mutex_lock(&philo->mutex);
-	philo->last_eat_ms_time = get_ms_time();
-	philo->num_of_eat++;
+	pthread_mutex_lock(&philo->manager->finish_mutex);
+	if (!philo->manager->finish)
+	{
+		philo->last_eat_ms_time = get_ms_time();
+		philo->num_of_eat++;
+	}
+	pthread_mutex_unlock(&philo->manager->finish_mutex);
 	pthread_mutex_unlock(&philo->mutex);
 
 	pthread_mutex_unlock(&philo->manager->fork[philo->right - 1]);

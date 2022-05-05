@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 18:48:55 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/05 22:06:50 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/05 23:16:34 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ static int init_mutex(t_manager *manager)
 	if (!manager->fork)
 		return throw_error("Error: malloc failed");
 	if (pthread_mutex_init(&manager->print, NULL))
+		return throw_error("pthread_mutex_init failed");
+	if (pthread_mutex_init(&manager->finish_mutex, NULL))
 		return throw_error("pthread_mutex_init failed");
 	i = 0;
 	while (i < manager->number_of_philos)

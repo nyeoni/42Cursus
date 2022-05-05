@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 14:50:13 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/06 00:16:00 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/06 02:02:27 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 static void *run_philo(t_philo *philo)
 {
+	int finish_flag;
+
 	pthread_mutex_lock(&philo->manager->fork[philo->right]);
 	print_action(philo, "\x1B[32mhas taken a fork\x1B[0m");
 	pthread_mutex_unlock(&philo->manager->fork[philo->right]);
-	while (!philo->manager->finish)
-		;
+
+	usleep(philo->manager->time_to_die * 1000);
+
 	return NULL;
 }
 
@@ -80,7 +83,6 @@ int create_philos(t_manager *manager)
 				run_philos, (void *)&manager->philos[i]))
 			return (pthread_error(manager, i));
 		i++;
-		// usleep(10000000);
 	}
 	return (SUCCESS_FLAG);
 }

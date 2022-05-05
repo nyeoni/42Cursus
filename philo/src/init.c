@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 18:48:55 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/05 23:16:34 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/06 01:36:27 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ static int init_philos(t_manager *manager)
 		manager->philos[i].id = i + 1;
 		manager->philos[i].right = manager->philos[i].id + 1;
 		manager->philos[i].left = manager->philos[i].id - 1;
-		manager->philos[i].last_eat_ms_time = get_ms_time();
+		manager->philos[i].start_eat_ms_time = 0;
+		manager->philos[i].last_eat_ms_time = 0;
 		manager->philos[i].num_of_eat = 0;
 		manager->philos[i].manager = manager;
 		if (pthread_mutex_init(&manager->philos[i].mutex, NULL))

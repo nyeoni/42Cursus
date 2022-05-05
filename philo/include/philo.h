@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:18:25 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/05 23:15:48 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/06 01:32:39 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_philo {
 	int id;
 	int right;
 	int left;
+	long long start_eat_ms_time;
 	long long last_eat_ms_time;
 	int num_of_eat;
 	t_manager *manager;

@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 14:50:13 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/05 22:51:22 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/05 22:52:27 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,5 @@ int create_philos(t_manager *manager)
 			return (pthread_error(manager, i));
 		i++;
 	}
-	// join_philos(manager);
 	return (SUCCESS_FLAG);
 }

@@ -6,11 +6,11 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:18:25 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/05 14:51:08 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/05 17:48:11 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
+# ifndef PHILO_H
 # define PHILO_H
 
 #include <stdlib.h>
@@ -31,8 +31,9 @@ typedef struct s_philo {
 	int id;
 	int right;
 	int left;
-	int start_eat_ms_time;
-	int start_sleep_ms_time;
+	long long start_eat_ms_time;
+	long long start_sleep_ms_time;
+	int num_of_eat;
 	t_manager *manager;
 }	t_philo;
 
@@ -43,7 +44,7 @@ typedef struct s_manager {
 	int time_to_sleep;
 	int num_of_time_must_eat;
 	int finish;
-	int start_ms_time;
+	long long start_ms_time;
 	t_philo *philos;
 	pthread_mutex_t *fork;
 	pthread_mutex_t print;
@@ -53,8 +54,13 @@ typedef struct s_manager {
 int init(t_manager *manager, int argc, char **argv);
 
 /* PHILO */
-void *philo(void *argv);
-void *philo_one(t_philo *philo);
+int create_philos(t_manager *manager);
+
+/* ACTION */
+void isFork(t_philo *philo);
+void eating(t_philo *philo);
+void sleeping(t_philo *philo);
+void thinking(t_philo *philo);
 
 /* UTIL */
 int ft_atoi(const char *arr);

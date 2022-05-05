@@ -6,7 +6,7 @@
 #    By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/17 17:20:19 by nkim              #+#    #+#              #
-#    Updated: 2022/05/05 02:22:24 by nkim             ###   ########.fr        #
+#    Updated: 2022/05/05 17:56:50 by nkim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,34 +16,33 @@ CC						= gcc
 CFLAGS					= -Wall -Werror -Wextra
 AR						= ar rcs
 RM						= rm -f
-LEAK_FLAGS				= -g3 -fsanitize=address
+LEAK_FLAGS				= -g3 -fsanitize=thread
 
-INCS_DIR				= ./include/
+INCS_DIR				= ./include
 SRCS_DIR				= ./src/
 INCS					= -I include
 
-SRC						= main.c util.c init.c
+SRC						= main.c init.c philo.c action.c util.c error.c
 SRCS					= $(addprefix $(SRCS_DIR), $(SRC))
 OBJS					= $(SRCS:.c=.o)
 
 .c.o :
-	$(CC) $(CFLAGS) -I $(INCS_DIR) -o $@ -c $?
+	$(CC) -I $(INCS_DIR) -o $@ -c $?
 
 $(NAME) : $(OBJS)
 	@echo "\033[33m----Compiling lib----"
 	$(CC) -o $(NAME) $(OBJS) -I $(INCS_DIR) -lpthread
-	@echo "\n----Philosopher Compiled! 😻----"
+	@echo "\n----Philosopher Compiled!----"
 
 all : $(NAME)
 
 clean :
-	make -C $(LIBFT_DIR) clean
 	$(RM) $(OBJS) a.out.dSYM
 
 fclean : clean
-	@echo "\n\033[31m----Delete everything 👌!----"
+	@echo "\n\033[31m----Delete everything!----"
 	$(RM) $(NAME) $(NAME).dSYM
-	@echo "\n\033[31m----fclean done 👌!----\n"
+	@echo "\n\033[31m----fclean done!----\n"
 
 re : fclean all
 

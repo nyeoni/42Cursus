@@ -6,13 +6,13 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 18:48:55 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/05 14:47:01 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/05 18:08:28 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void init_manager(t_manager *manager, int argc, char **argv)
+static void init_manager(t_manager *manager, int argc, char **argv)
 {
 	manager->number_of_philos = ft_atoi(argv[1]);
 	manager->time_to_die = ft_atoi(argv[2]);
@@ -24,7 +24,7 @@ void init_manager(t_manager *manager, int argc, char **argv)
 	manager->start_ms_time = get_ms_time();
 }
 
-int init_philos(t_manager *manager)
+static int init_philos(t_manager *manager)
 {
 	int i;
 
@@ -34,11 +34,13 @@ int init_philos(t_manager *manager)
 	i = 0;
 	while (i < manager->number_of_philos)
 	{
+		manager->philos[i].thread = NULL;
 		manager->philos[i].id = i + 1;
 		manager->philos[i].right = manager->philos[i].id + 1;
 		manager->philos[i].left = manager->philos[i].id - 1;
 		manager->philos[i].start_eat_ms_time = get_ms_time();
 		manager->philos[i].start_sleep_ms_time = get_ms_time();
+		manager->philos[i].num_of_eat = 0;
 		manager->philos[i].manager = manager;
 		i++;
 	}
@@ -47,7 +49,7 @@ int init_philos(t_manager *manager)
 	return (SUCCESS_FLAG);
 }
 
-int valid_manager(t_manager *manager, int argc)
+static int valid_manager(t_manager *manager, int argc)
 {
 	if (manager->number_of_philos <= 0)
 		return throw_error("Number of philosophers must be greater than 0");
@@ -62,7 +64,7 @@ int valid_manager(t_manager *manager, int argc)
 	return (SUCCESS_FLAG);
 }
 
-int init_mutex(t_manager *manager)
+static int init_mutex(t_manager *manager)
 {
 	int i;
 

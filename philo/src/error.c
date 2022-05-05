@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 13:53:06 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/05 14:03:09 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/05 15:56:56 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	throw_error(char *msg)
 
 int pthread_error(t_manager *manager, int thread_cnt)
 {
-
+	int i = thread_cnt;
+	
 	return (-1);
 }

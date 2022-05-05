@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 18:48:55 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/05 18:08:28 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/05 22:06:50 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void init_manager(t_manager *manager, int argc, char **argv)
 {
+	memset(manager, 0, sizeof(t_manager));
 	manager->number_of_philos = ft_atoi(argv[1]);
 	manager->time_to_die = ft_atoi(argv[2]);
 	manager->time_to_eat = ft_atoi(argv[3]);
@@ -21,6 +22,8 @@ static void init_manager(t_manager *manager, int argc, char **argv)
 	manager->finish = FALSE;
 	if (argc == 6)
 		manager->num_of_time_must_eat = ft_atoi(argv[5]);
+	else
+		manager->num_of_time_must_eat = -1;
 	manager->start_ms_time = get_ms_time();
 }
 
@@ -34,14 +37,15 @@ static int init_philos(t_manager *manager)
 	i = 0;
 	while (i < manager->number_of_philos)
 	{
-		manager->philos[i].thread = NULL;
+		memset(&manager->philos[i], 0, sizeof(t_philo));
 		manager->philos[i].id = i + 1;
 		manager->philos[i].right = manager->philos[i].id + 1;
 		manager->philos[i].left = manager->philos[i].id - 1;
-		manager->philos[i].start_eat_ms_time = get_ms_time();
-		manager->philos[i].start_sleep_ms_time = get_ms_time();
+		manager->philos[i].last_eat_ms_time = get_ms_time();
 		manager->philos[i].num_of_eat = 0;
 		manager->philos[i].manager = manager;
+		if (pthread_mutex_init(&manager->philos[i].mutex, NULL))
+			return throw_error("pthread_mutex_init failed");
 		i++;
 	}
 	manager->philos[0].left = manager->number_of_philos;

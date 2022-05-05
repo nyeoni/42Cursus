@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:18:06 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/05 18:09:21 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/05 21:39:16 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,7 @@ int main(int argc, char **argv)
 		return throw_error("Init failed");
 	if (create_philos(&manager))
 		return throw_error("Philosopher failed");
+	monitor(&manager);
+
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:18:25 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/05 17:48:11 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/05 22:04:14 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@
 typedef struct s_manager t_manager;
 typedef struct s_philo {
 	pthread_t thread;
+	pthread_mutex_t mutex;
 	int id;
 	int right;
 	int left;
-	long long start_eat_ms_time;
-	long long start_sleep_ms_time;
+	long long last_eat_ms_time;
 	int num_of_eat;
 	t_manager *manager;
 }	t_philo;
@@ -55,12 +55,17 @@ int init(t_manager *manager, int argc, char **argv);
 
 /* PHILO */
 int create_philos(t_manager *manager);
+int join_philos(t_manager *manager);
 
 /* ACTION */
+void print_action(t_philo *philo, char *action_msg);
 void isFork(t_philo *philo);
 void eating(t_philo *philo);
 void sleeping(t_philo *philo);
 void thinking(t_philo *philo);
+
+/* MONITOR */
+void monitor(t_manager *manager);
 
 /* UTIL */
 int ft_atoi(const char *arr);

@@ -6,7 +6,7 @@
 #    By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/17 17:20:19 by nkim              #+#    #+#              #
-#    Updated: 2022/05/05 17:56:50 by nkim             ###   ########.fr        #
+#    Updated: 2022/05/05 21:48:00 by nkim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,14 +15,14 @@ NAME					= philo
 CC						= gcc
 CFLAGS					= -Wall -Werror -Wextra
 AR						= ar rcs
-RM						= rm -f
+RM						= rm -rf
 LEAK_FLAGS				= -g3 -fsanitize=thread
 
 INCS_DIR				= ./include
 SRCS_DIR				= ./src/
 INCS					= -I include
 
-SRC						= main.c init.c philo.c action.c util.c error.c
+SRC						= main.c init.c philo.c action.c monitor.c util.c error.c
 SRCS					= $(addprefix $(SRCS_DIR), $(SRC))
 OBJS					= $(SRCS:.c=.o)
 

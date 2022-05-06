@@ -6,15 +6,16 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 16:39:10 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/05 15:23:01 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/06 13:39:37 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int ft_atoi(const char *arr) {
-	int res;
-	int sign;
+int	ft_atoi(const char *arr)
+{
+	int	res;
+	int	sign;
 
 	res = 0;
 	sign = 1;
@@ -28,9 +29,10 @@ int ft_atoi(const char *arr) {
 	return (res * sign);
 }
 
-long long get_ms_time() {
-	struct timeval tv;
-	long long ms;
+long long	get_ms_time(void)
+{
+	struct timeval	tv;
+	long long		ms;
 
 	gettimeofday(&tv, NULL);
 	ms = tv.tv_sec * 1000 + tv.tv_usec / 1000;

@@ -6,13 +6,13 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 18:48:55 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/06 13:20:01 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/06 13:41:31 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void init_manager(t_manager *manager, int argc, char **argv)
+static void	init_manager(t_manager *manager, int argc, char **argv)
 {
 	memset(manager, 0, sizeof(t_manager));
 	manager->number_of_philos = ft_atoi(argv[1]);
@@ -27,13 +27,14 @@ static void init_manager(t_manager *manager, int argc, char **argv)
 	manager->start_ms_time = get_ms_time();
 }
 
-static int init_philos(t_manager *manager)
+static int	init_philos(t_manager *manager)
 {
-	int i;
+	int	i;
 
-	manager->philos = (t_philo *)malloc(sizeof(t_philo) * manager->number_of_philos);
+	manager->philos
+		= (t_philo *)malloc(sizeof(t_philo) * manager->number_of_philos);
 	if (!manager->philos)
-		return throw_error("Error: malloc failed");
+		return (throw_error("Error: malloc failed"));
 	i = 0;
 	while (i < manager->number_of_philos)
 	{
@@ -47,50 +48,51 @@ static int init_philos(t_manager *manager)
 		manager->philos[i].num_of_eat = 0;
 		manager->philos[i].manager = manager;
 		if (pthread_mutex_init(&manager->philos[i].mutex, NULL))
-			return throw_error("pthread_mutex_init failed");
+			return (throw_error("pthread_mutex_init failed"));
 		i++;
 	}
 	manager->philos[manager->number_of_philos - 1].right = 0;
 	return (SUCCESS_FLAG);
 }
 
-static int valid_manager(t_manager *manager, int argc)
+static int	valid_manager(t_manager *manager, int argc)
 {
 	if (manager->number_of_philos <= 0)
-		return throw_error("Number of philosophers must be greater than 0");
+		return (throw_error("Number of philosophers must be greater than 0"));
 	if (manager->time_to_die <= 0)
-		return throw_error("Time to die must be greater than 0");
+		return (throw_error("Time to die must be greater than 0"));
 	if (manager->time_to_eat <= 0)
-		return throw_error("Time to eat must be greater than 0");
+		return (throw_error("Time to eat must be greater than 0"));
 	if (manager->time_to_sleep <= 0)
-		return throw_error("Time to sleep must be greater than 0");
+		return (throw_error("Time to sleep must be greater than 0"));
 	if (argc == 6 && manager->num_of_time_must_eat < 0)
-		return throw_error("Number of times to eat must be greater than 0");
+		return (throw_error("Number of times to eat must be greater than 0"));
 	return (SUCCESS_FLAG);
 }
 
-static int init_mutex(t_manager *manager)
+static int	init_mutex(t_manager *manager)
 {
-	int i;
+	int	i;
 
-	manager->fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * manager->number_of_philos);
+	manager->fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) \
+							* manager->number_of_philos);
 	if (!manager->fork)
-		return throw_error("Error: malloc failed");
+		return (throw_error("Error: malloc failed"));
 	if (pthread_mutex_init(&manager->print, NULL))
-		return throw_error("pthread_mutex_init failed");
+		return (throw_error("pthread_mutex_init failed"));
 	if (pthread_mutex_init(&manager->finish_mutex, NULL))
-		return throw_error("pthread_mutex_init failed");
+		return (throw_error("pthread_mutex_init failed"));
 	i = 0;
 	while (i < manager->number_of_philos)
 	{
 		if (pthread_mutex_init(&manager->fork[i], NULL))
-			return throw_error("pthread_mutex_init failed");
+			return (throw_error("pthread_mutex_init failed"));
 		i++;
 	}
-	return SUCCESS_FLAG;
+	return (SUCCESS_FLAG);
 }
 
-int init(t_manager *manager, int argc, char **argv)
+int	init(t_manager *manager, int argc, char **argv)
 {
 	init_manager(manager, argc, argv);
 	if (valid_manager(manager, argc))

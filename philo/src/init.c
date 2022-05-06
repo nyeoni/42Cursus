@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 18:48:55 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/06 01:36:27 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/06 13:20:01 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,18 @@ static int init_philos(t_manager *manager)
 	{
 		memset(&manager->philos[i], 0, sizeof(t_philo));
 		manager->philos[i].id = i + 1;
-		manager->philos[i].right = manager->philos[i].id + 1;
+		manager->philos[i].right = manager->philos[i].id;
 		manager->philos[i].left = manager->philos[i].id - 1;
 		manager->philos[i].start_eat_ms_time = 0;
 		manager->philos[i].last_eat_ms_time = 0;
+		manager->philos[i].start_sleep_ms_time = 0;
 		manager->philos[i].num_of_eat = 0;
 		manager->philos[i].manager = manager;
 		if (pthread_mutex_init(&manager->philos[i].mutex, NULL))
 			return throw_error("pthread_mutex_init failed");
 		i++;
 	}
-	manager->philos[0].left = manager->number_of_philos;
-	manager->philos[manager->number_of_philos - 1].right = 1;
+	manager->philos[manager->number_of_philos - 1].right = 0;
 	return (SUCCESS_FLAG);
 }
 

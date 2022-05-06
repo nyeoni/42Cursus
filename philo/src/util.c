@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 16:39:10 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/06 16:16:17 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/06 16:28:46 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	arg_parse(const char *arr)
 	int	res;
 	int	tmp;
 	int	sign;
-	int	i;
+	size_t	i;
 
 	res = 0;
 	tmp = 0;

@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 13:53:06 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/06 15:56:35 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/06 16:35:48 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,18 @@ int	pthread_error(t_manager *manager, int thread_cnt)
 {
 	int	i;
 
-	i = thread_cnt;
-	return (-1);
+	i = 0;
+	while (i < manager->number_of_philos)
+	{
+		if (i < thread_cnt)
+		{
+			pthread_join(manager->philos[i].thread, NULL);
+			pthread_mutex_destroy(&manager->philos[i].mutex);
+		}
+		pthread_mutex_destroy(&manager->fork[i]);
+		i++;
+	}
+	pthread_mutex_destroy(&manager->finish_mutex);
+	pthread_mutex_destroy(&manager->print);
+	return (ERROR_FLAG);
 }

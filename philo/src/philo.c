@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 14:50:13 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/06 16:28:02 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/06 16:41:02 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,12 @@ int	join_philos(t_manager *manager)
 	while (i < manager->number_of_philos)
 	{
 		pthread_mutex_destroy(&manager->fork[i]);
+		pthread_mutex_destroy(&manager->philos[i].mutex);
 		pthread_join(manager->philos[i].thread, NULL);
 		i++;
 	}
 	pthread_mutex_destroy(&manager->print);
+	pthread_mutex_destroy(&manager->finish_mutex);
 	free(manager->philos);
 	free(manager->fork);
 	return (SUCCESS_FLAG);

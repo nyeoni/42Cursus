@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 13:53:06 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/06 16:35:48 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/06 16:39:54 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	pthread_error(t_manager *manager, int thread_cnt)
 		pthread_mutex_destroy(&manager->fork[i]);
 		i++;
 	}
-	pthread_mutex_destroy(&manager->finish_mutex);
 	pthread_mutex_destroy(&manager->print);
+	pthread_mutex_destroy(&manager->finish_mutex);
 	return (ERROR_FLAG);
 }

@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 20:10:09 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/06 13:38:53 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/06 21:58:00 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,13 @@ static void	philo_died(t_manager *manager, int i)
 long long	get_starve_time(t_manager *manager, int i)
 {
 	long long	starve_time;
-	long long	start_eat_ms_time;
 	long long	last_eat_ms_time;
 
-	pthread_mutex_lock(&manager->print);
-	start_eat_ms_time = manager->philos[i].start_eat_ms_time;
-	pthread_mutex_unlock(&manager->print);
 	pthread_mutex_lock(&manager->philos[i].mutex);
 	last_eat_ms_time = manager->philos[i].last_eat_ms_time;
 	pthread_mutex_unlock(&manager->philos[i].mutex);
-	if (!start_eat_ms_time && !last_eat_ms_time)
-		starve_time = get_ms_time() - manager->start_ms_time;
-	else if (start_eat_ms_time >= last_eat_ms_time)
-		starve_time = get_ms_time() - start_eat_ms_time;
+	if (!last_eat_ms_time)
+		starve_time = get_ms_time() - manager->start_ms_time;\
 	else
 		starve_time = get_ms_time() - last_eat_ms_time;
 	return (starve_time);

@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:18:25 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/06 13:44:35 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/06 16:11:36 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void						thinking(t_philo *philo);
 void						monitor(t_manager *manager);
 
 /* UTIL */
-int							ft_atoi(const char *arr);
+int							arg_parse(const char *arr);
 long long					get_ms_time(void);
 size_t						ft_strlen(const char *s);
 

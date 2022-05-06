@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 13:53:06 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/06 13:36:15 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/06 15:56:35 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	throw_error(char *msg)
 {
-	write(2, "\033[31mError\n\033[0m", 6);
+	write(2, "Error\n", 6);
 	write(2, msg, ft_strlen(msg));
 	return (1);
 }

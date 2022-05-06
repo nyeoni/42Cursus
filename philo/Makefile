@@ -6,7 +6,7 @@
 #    By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/17 17:20:19 by nkim              #+#    #+#              #
-#    Updated: 2022/05/05 21:48:00 by nkim             ###   ########.fr        #
+#    Updated: 2022/05/06 16:18:53 by nkim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRCS					= $(addprefix $(SRCS_DIR), $(SRC))
 OBJS					= $(SRCS:.c=.o)
 
 .c.o :
-	$(CC) -I $(INCS_DIR) -o $@ -c $?
+	$(CC) $(CFLAGS) -I $(INCS_DIR) -o $@ -c $?
 
 $(NAME) : $(OBJS)
 	@echo "\033[33m----Compiling lib----"

@@ -6,26 +6,35 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 16:39:10 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/06 13:39:37 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/06 16:16:17 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_atoi(const char *arr)
+int	arg_parse(const char *arr)
 {
 	int	res;
+	int	tmp;
 	int	sign;
+	int	i;
 
 	res = 0;
+	tmp = 0;
 	sign = 1;
 	if (*arr == '-')
+		return (ERROR_FLAG);
+	i = 0;
+	while (i < ft_strlen(arr))
 	{
-		sign = -1;
-		arr++;
+		if (*arr >= '0' && *arr <= '9')
+			tmp = res * 10 + *arr++ - '0';
+		else
+			return (ERROR_FLAG);
+		if (tmp < res)
+			return (ERROR_FLAG);
+		res = tmp;
 	}
-	while (*arr >= '0' && *arr <= '9')
-		res = res * 10 + *arr++ - '0';
 	return (res * sign);
 }
 

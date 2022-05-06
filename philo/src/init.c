@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 18:48:55 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/06 13:41:31 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/06 16:17:46 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static void	init_manager(t_manager *manager, int argc, char **argv)
 {
 	memset(manager, 0, sizeof(t_manager));
-	manager->number_of_philos = ft_atoi(argv[1]);
-	manager->time_to_die = ft_atoi(argv[2]);
-	manager->time_to_eat = ft_atoi(argv[3]);
-	manager->time_to_sleep = ft_atoi(argv[4]);
+	manager->number_of_philos = arg_parse(argv[1]);
+	manager->time_to_die = arg_parse(argv[2]);
+	manager->time_to_eat = arg_parse(argv[3]);
+	manager->time_to_sleep = arg_parse(argv[4]);
 	manager->finish = FALSE;
 	if (argc == 6)
-		manager->num_of_time_must_eat = ft_atoi(argv[5]);
+		manager->num_of_time_must_eat = arg_parse(argv[5]);
 	else
 		manager->num_of_time_must_eat = -1;
 	manager->start_ms_time = get_ms_time();
@@ -58,15 +58,15 @@ static int	init_philos(t_manager *manager)
 static int	valid_manager(t_manager *manager, int argc)
 {
 	if (manager->number_of_philos <= 0)
-		return (throw_error("Number of philosophers must be greater than 0"));
+		return (ERROR_FLAG);
 	if (manager->time_to_die <= 0)
-		return (throw_error("Time to die must be greater than 0"));
+		return (ERROR_FLAG);
 	if (manager->time_to_eat <= 0)
-		return (throw_error("Time to eat must be greater than 0"));
+		return (ERROR_FLAG);
 	if (manager->time_to_sleep <= 0)
-		return (throw_error("Time to sleep must be greater than 0"));
+		return (ERROR_FLAG);
 	if (argc == 6 && manager->num_of_time_must_eat < 0)
-		return (throw_error("Number of times to eat must be greater than 0"));
+		return (ERROR_FLAG);
 	return (SUCCESS_FLAG);
 }
 

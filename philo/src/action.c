@@ -18,9 +18,9 @@ void	print_action(t_philo *philo, char *action_msg)
 	int	finish_flag;
 
 	pthread_mutex_lock(&philo->manager->finish_mutex);
-	finish_flag = !philo->manager->finish;
+	finish_flag = philo->manager->finish;
 	pthread_mutex_unlock(&philo->manager->finish_mutex);
-	if (finish_flag)
+	if (!finish_flag)
 	{
 		printf("%lld ", get_ms_time() - philo->manager->start_ms_time);
 		printf("%d ", philo->id);
@@ -28,7 +28,7 @@ void	print_action(t_philo *philo, char *action_msg)
 	}
 }
 
-void	isFork(t_philo *philo)
+void	is_fork(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->manager->fork[philo->left]);
 	pthread_mutex_lock(&philo->manager->print);
@@ -52,9 +52,9 @@ void	eating(t_philo *philo)
 			< philo->manager->time_to_eat)
 		usleep(500);
 	pthread_mutex_lock(&philo->manager->finish_mutex);
-	finish_flag = !philo->manager->finish;
+	finish_flag = philo->manager->finish;
 	pthread_mutex_unlock(&philo->manager->finish_mutex);
-	if (finish_flag)
+	if (!finish_flag)
 	{
 		pthread_mutex_lock(&philo->mutex);
 		philo->last_eat_ms_time = get_ms_time();

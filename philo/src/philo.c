@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 14:50:13 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/06 16:41:02 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/06 17:38:28 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ static void	*run_philos(void *argv)
 	if (philo->id % 2 == 0)
 		usleep(philo->manager->time_to_eat * 500);
 	pthread_mutex_lock(&philo->manager->finish_mutex);
-	finish_flag = !philo->manager->finish;
+	finish_flag = philo->manager->finish;
 	pthread_mutex_unlock(&philo->manager->finish_mutex);
-	while (finish_flag)
+	while (!finish_flag)
 	{
-		isFork(philo);
+		is_fork(philo);
 		eating(philo);
 		sleeping(philo);
 		thinking(philo);
 		pthread_mutex_lock(&philo->manager->finish_mutex);
-		finish_flag = !philo->manager->finish;
+		finish_flag = philo->manager->finish;
 		pthread_mutex_unlock(&philo->manager->finish_mutex);
 	}
 	return (NULL);

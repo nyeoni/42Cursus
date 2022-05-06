@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:18:25 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/06 16:11:36 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/06 17:37:24 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int							join_philos(t_manager *manager);
 
 /* ACTION */
 void						print_action(t_philo *philo, char *action_msg);
-void						isFork(t_philo *philo);
+void						is_fork(t_philo *philo);
 void						eating(t_philo *philo);
 void						sleeping(t_philo *philo);
 void						thinking(t_philo *philo);

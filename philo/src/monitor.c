@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 20:10:09 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/06 22:22:44 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/12 13:28:53 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ static void	philo_died(t_manager *manager, int i)
 {
 	pthread_mutex_lock(&manager->print);
 	print_action(&manager->philos[i], "\x1B[31mdied\x1B[0m");
-	pthread_mutex_unlock(&manager->print);
 	pthread_mutex_lock(&manager->finish_mutex);
 	manager->finish = TRUE;
 	pthread_mutex_unlock(&manager->finish_mutex);
+	pthread_mutex_unlock(&manager->print);
 	join_philos(manager);
 }
 

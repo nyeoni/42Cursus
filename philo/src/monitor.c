@@ -6,7 +6,7 @@
 /*   By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 20:10:09 by nkim              #+#    #+#             */
-/*   Updated: 2022/05/12 13:28:53 by nkim             ###   ########.fr       */
+/*   Updated: 2022/05/12 13:56:28 by nkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ long long	get_starve_time(t_manager *manager, int i)
 	if (!last_eat_ms_time)
 		starve_time = get_ms_time() - manager->start_ms_time;
 	else
-		starve_time = get_ms_time() - last_eat_ms_time;
+	{
+		pthread_mutex_lock(&manager->print);
+		starve_time = get_ms_time() - manager->philos[i].start_eat_ms_time;
+		pthread_mutex_unlock(&manager->print);
+	}
 	return (starve_time);
 }
 

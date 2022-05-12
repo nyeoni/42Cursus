@@ -6,13 +6,13 @@
 #    By: nkim <nkim@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/17 17:20:19 by nkim              #+#    #+#              #
-#    Updated: 2022/05/06 16:18:53 by nkim             ###   ########.fr        #
+#    Updated: 2022/05/12 13:28:13 by nkim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME					= philo
 
-CC						= gcc
+CC						= cc
 CFLAGS					= -Wall -Werror -Wextra
 AR						= ar rcs
 RM						= rm -rf
